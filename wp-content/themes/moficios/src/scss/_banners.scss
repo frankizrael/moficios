@@ -1,0 +1,228 @@
+@import "font_cocogoose";
+
+.banner {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  .content-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .content-left {
+      display: flex;
+      align-items: center;
+      &__img {
+        margin-right: 25px;
+      }
+      &__content {
+        &.flex-int {
+          display: flex;
+          align-items: center;
+          .banner-text {
+              width: 101px;
+              font-size: 14px;
+              margin-right: 15px;
+              &.max-55 {
+                max-width: 55px;
+              }
+          }
+        }
+      }
+    }
+    .col-name {
+      display: flex;
+      align-items: center;
+      .banner-btn-a {
+        width: 125px;
+      }
+    }
+  }
+  &.tinka {
+    background-color: $color-tinka;
+    padding-top: 1.2em;
+    padding-bottom: 1.2em;
+    @include media-breakpoint-down(md) {
+      padding-top: .8em;
+      padding-bottom: .8em;
+    }
+    .banner-text, .banner-amount {
+      color: #036436;
+    }
+    .banner-text {
+      font-weight: 700;
+      line-height: 12px;
+      margin-bottom: 5px;
+    }
+    .banner-amount {
+      font-size: 32px;
+      line-height: 32px;
+      font-weight: 700;
+    }
+    .content-flex {
+      .content-left__img {
+        img {
+          width: 135px;
+        }
+      }
+    }
+  }
+  &.kabala {
+    background-color: $color-kabala;
+    .banner-amount {
+      font-family: 'Cocogoose';
+      font-size: 48px;
+      color: #fff;
+      line-height: 49px;
+      -webkit-text-stroke: 2px #202a10;
+      text-shadow: 1px 1px 0 #202a10;
+      transform: scaleX(0.85);
+      letter-spacing: -1px;
+      color: white;
+      @include media-breakpoint-down(md) {
+        font-size: 30px;
+      }
+    }
+    .banner-text {
+      font-family: 'chunkFive';
+      color: #202a10;
+      font-size: 12px !important;
+      width: 65px !important;
+      line-height: 12px;
+      font-weight: 700;
+      margin-right: 5px !important;
+      b {
+        font-size: 20px;
+        line-height: 20px;
+      }
+    }
+    .banner-date {
+      font-family: 'BentonSans-Black' !important;
+      color: #486430;
+      font-size: 10px;
+    }
+    .content-flex {
+      .content-left__img {
+        img {
+          width: 110px;
+        }
+      }
+    }
+  }
+  &.gana-diario {
+    background-color: $color-gana-diario;
+    .banner-logo {
+      max-height: 50px;
+    }
+    .banner-text {
+      z-index: 2;
+      font-family: 'MyriadProSemiBold' !important;
+      font-size: 15.5px !important;
+      line-height: 18px;
+      color: #fff !important;
+      text-shadow: 0px 0px 2px #600a6f;
+      position: relative;
+      &:after {
+        z-index: -1;
+        position: absolute;
+        left: 0;
+        -webkit-text-stroke-width: 4px;
+        -webkit-text-stroke-color: #600a6f;
+        content: 'PREMIO DIARIO';
+        width: 100%;
+        top: 0;
+      }
+    }
+    .banner-amount {
+      font-family: "MyriadProBold", sans-serif !important;
+      font-weight: bold;
+      font-size: 55px;
+      text-shadow: 4px 4px 0 #600a6f;
+      line-height: 48px;
+      transform: scaleX(0.85);
+      position: relative;
+      top: 5px;
+      &:after {
+          content: attr(data);
+          position: absolute;
+          left: 0;
+          -webkit-text-stroke: 6px #600a6f;
+          z-index: -2;
+      }
+      @include media-breakpoint-down(md) {
+        font-size: 35px;
+      }
+    }
+    .banner-date {
+      font-family: 'MyriadPro-BoldIt' !important;
+      color: #600a6f;
+      font-size: 13px;
+    }
+  }
+  &.ganagol {
+    background-color: $color-ganagol;
+    .banner-text {
+      font-family: 'clanpromedium' !important;
+      font-size: 12px !important;
+      font-weight: 700;
+    }
+    .banner-amount {
+      font-family: 'clanprobold', sans-serif!important;
+      font-weight: bold;
+      font-size: 37px;
+      line-height: 49px;
+      position: relative;
+      top: 3px;
+    }
+    .content-flex {
+      .content-left__img {
+        img {
+          width: 135px;
+        }
+      }
+    }
+    .banner-date {
+      font-family: 'clanpromedium' !important;
+      color: #FFE700!important;
+    }
+  }
+  .banner-logo {
+    max-width: 100%;
+  }
+  .banner-text {
+    font-family: 'Cocogoose', sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  .banner-amount {
+    font-family: 'Cocogoose', sans-serif;
+  }
+  .banner-date {
+    font-size: 10px;
+    margin-right: 28px;
+    line-height: 15px;
+    text-align: right;
+    font-family: 'Cocogoose', sans-serif;
+  }
+  .btn {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .text-md-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+.img_background  {
+  img {
+    width: 100%;
+    height: auto;
+  }
+}

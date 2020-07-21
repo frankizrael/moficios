@@ -1,0 +1,114 @@
+@import "variables";
+
+#faq {
+  .hero {
+    background: $brand-color;
+    color: #fff;
+    height: 100vh;
+    max-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h1 {
+      font-size: 2.25em;
+      font-weight: 600;
+    }
+    input[type=search] {
+      border: 1px solid #fff;
+      border-radius: 5px;
+      background: transparent;
+      color: #fff;
+      width: 600px;
+      font-size: .9em;
+      padding: 1em;
+      margin-top: 2em;
+      @media screen and (max-width: 600px) {
+        width: 90vw;
+      }
+      &::placeholder {
+        color: rgba(#fff, .8);
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  .list-questions {
+    .question {
+      h2 {
+        color: #474C3E;
+        font-size: .95em;
+        &:before {
+          content: ' ';
+          display: block;
+          width: 50px;
+          height: 2px;
+          background: $brand-color;
+          margin-bottom: .5em;
+        }
+      }
+      .answer {
+        color: rgba(#474C3E, .7);
+        font-size: .95em;
+      }
+      .valoration-answer {
+          padding: 10px;
+          max-width: 200px;
+          .front-answer {
+            h3 {
+              color: #474C3E;
+              font-size: 14px;
+              text-align: center;
+              margin-bottom: 10px;
+            }
+            .btns {
+              display: flex;
+              justify-content: space-between;
+              .btn {
+                width: calc(50% - 10px);
+                text-align: center;
+                border: solid 1px #eb8831;
+                color: white;
+                background: #eb8831;
+                padding: 6px 0px;
+                font-size: 14px;
+                border-radius: 5px;
+                &.btnWhite {
+                  color: #eb8831;
+                  background: white;
+                }
+              }
+            }
+          }
+          .back-answer {
+            display: none;
+            svg {
+              fill: #eb8831;
+              width: 40px;
+              margin: auto;
+              display: block;
+              margin-bottom: 5px;
+            }
+            p {
+              margin-bottom: 0px;
+              color: rgba(71, 76, 62, 0.7);
+              font-size: 14px;
+              text-align: center;
+            }
+          }
+      }
+      &:last-child {
+        hr {
+          display: none;
+        }
+      }
+    }
+  }
+  .empty-results {
+    font-size: 1.3em;
+    padding: 3em 0;
+    text-align: center;
+    color: rgba(#000, .5);
+  }
+}

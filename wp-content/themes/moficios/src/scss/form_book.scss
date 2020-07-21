@@ -1,0 +1,88 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/forms";
+@import "variables";
+
+#form-book {
+  .content {
+    .left {
+      background: #F2F2F2;
+      color: #474C3E;
+      font-size: 14px;
+      .block {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+    }
+    .right {
+      form {
+        max-width: 600px;
+        .form-group {
+          position: relative;
+          label {
+            &:not(.error) {
+              position: absolute;
+              top: .75em;
+              left: 1.65em;
+              color: rgba(#474C3E, .3);
+              transition: .5s;
+            }
+            &.error {
+              display: none!important;
+            }
+          }
+          .form-control {
+            border-color: rgba(#474C3E, .3);
+            padding-top: 1.5em;
+            padding-bottom: 1.5em;
+            &:focus, &.valid, &.error {
+              box-shadow: none;
+              & ~ label {
+                top: -5px;
+                left: 2.5em;
+                background: #fff;
+                padding: 0 8px;
+                font-size: 10px;
+                transition: .5s;
+              }
+            }
+            &.error {
+              border-color: #CF161B;
+              & ~ label {
+                color: #CF161B;
+              }
+            }
+            &.valid {
+              border-color: #4BB040;
+              & ~ label {
+                color: #4BB040;
+              }
+            }
+          }
+        }
+      }
+      .post {
+        font-size: 12px;
+        color: rgba(#474C3E, .7);
+      }
+      .btn-submit {
+        background: $brand-color;
+        color: #fff;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 1.2em 3.5em;
+      }
+    }
+  }
+  h1 {
+    color: #464646;
+    font-size: 40px;
+    margin-bottom: 1em;
+    @include media-breakpoint-down(md) {
+      font-size: 1.7em;
+    }
+  }
+}

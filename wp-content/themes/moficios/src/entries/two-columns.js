@@ -1,0 +1,1 @@
+import '../scss/two_columns.scss';

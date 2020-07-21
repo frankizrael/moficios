@@ -1,0 +1,42 @@
+{
+  "name": "intralot",
+  "version": "1.0.0",
+  "description": "Intralot by Seek",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run clean && webpack --env.NODE_ENV=development --watch",
+    "build": "npm run clean && webpack --env.NODE_ENV=production --optimize-minimize --progress",
+    "clean": "rimraf ./dist/*"
+  },
+  "keywords": [
+    "intralot",
+    "seek"
+  ],
+  "author": "Gabriel Mondragón <gmondragon@seek.pe>",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "assets-webpack-plugin": "^3.9.10",
+    "babel-loader": "^8.0.5",
+    "babel-preset-env": "^1.7.0",
+    "bootstrap": "^4.3.1",
+    "css-loader": "^2.1.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^3.0.1",
+    "jquery": "^3.4.1",
+    "jquery-validation": "^1.19.0",
+    "node-sass": "^4.12.0",
+    "popper.js": "^1.15.0",
+    "sass-loader": "^7.1.0",
+    "slick-carousel": "^1.8.1",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
+  },
+  "dependencies": {
+    "sweetalert2": "^9.17.0",
+    "swiper": "^6.0.4"
+  }
+}

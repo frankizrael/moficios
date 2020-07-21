@@ -1,0 +1,50 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+@import "variables";
+
+#columns {
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4em 0;
+  }
+  .page-header {
+    .subtitle {
+      color: #474C3E;
+      font-size: 14px;
+      margin-bottom: -10px;
+    }
+    h1 {
+      color: $brand-color;
+      font-size: 40px;
+    }
+  }
+  .blocks {
+    .block {
+      margin-top: 3em;
+      @include media-breakpoint-down(md) {
+        margin-top: 1em;
+      }
+      h2 {
+        color: #474C3E;
+        font-size: 14px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        &:before {
+          content: '';
+          display: block;
+          width: 40px;
+          height: 2px;
+          background: $brand-color;
+          margin-bottom: 10px;
+        }
+      }
+      .text {
+        text-align: justify;
+        color: rgba(#474C3E, .7);
+        font-size: 14px;
+      }
+    }
+  }
+}

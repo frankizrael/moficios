@@ -1,0 +1,1 @@
+import '../scss/single_last_result.scss';

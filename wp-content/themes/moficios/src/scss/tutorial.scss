@@ -1,0 +1,184 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+@import "variables";
+@import "video_container";
+@import "~slick-carousel/slick/slick";
+
+#tutorial {
+  h1 {
+    color: $brand-color;
+    text-align: center;
+  }
+  h2 {
+    color: #7E7E7E;
+    font-size: 1.1em;
+  }
+  .slider {
+    margin: 2em auto;
+    display: flex;
+    align-items: center;
+    padding-bottom: 50px;
+    @include media-breakpoint-down(xs) {
+      display: block;
+    }
+    .slick-list {
+      min-width: 745px;
+      margin: 0 25px;
+      @include media-breakpoint-down(xs) {
+        min-width: auto;
+        margin: 0 1em;
+      }
+      .slick-slide {
+        img {
+          margin: 0 auto;
+        }
+      }
+    }
+    .slick-dots {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      margin-top: 1em;
+      @include media-breakpoint-down(xs) {
+        position: relative;
+      }
+      li {
+        list-style: none;
+        margin: 0 .25em;
+        &.slick-active {
+          button {
+            background: $brand-color;
+          }
+        }
+        button {
+          border: 0;
+          background: #cecece;
+          text-indent: -999999px;
+          width: 12px;
+          height: 12px;
+          border-radius: 100%;
+          &:focus,
+          &:active {
+            outline: none;
+          }
+        }
+      }
+    }
+    .arrow {
+      font-size: 2.2em;
+      background: #CF161B;
+      color: #fff;
+      border-radius: 100%;
+      height: 30px;
+      min-width: 30px;
+      line-height: .55em;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+  .page-header {
+    @include media-breakpoint-down(xs) {
+      background: $brand-color;
+      border-top: 1px solid rgba(#fff, .2);
+      h1 {
+        color: #fff;
+        font-size: 1.5em;
+      }
+    }
+  }
+  .nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    @include media-breakpoint-down(xs) {
+      flex-wrap: nowrap;
+      border-top: 1px solid rgba(112, 112, 112, .2);
+      border-bottom: 1px solid rgba(112, 112, 112, .2);
+    }
+    li {
+      padding: 0 1em;
+      position: relative;
+      @include media-breakpoint-up(xs){
+        &:before {
+          content: '';
+          display: block;
+          width: 100%;
+          height: 1px;
+          background: $brand-color;
+          position: absolute;
+          bottom: 5px;
+        }
+        &:after {
+          content: '';
+          position: relative;
+          border: 1px solid $brand-color;
+          font-size: 12px;
+          display: block;
+          margin: 8px auto 0;
+          width: 10px;
+          height: 10px;
+          border-radius: 100%;
+          background: #fff;
+          z-index: 2;
+        }
+        &:first-child {
+          &:before {
+            right: calc(-50% + -4px);
+          }
+        }
+        &:last-child {
+          &:before {
+            left: calc(-50% + -4px);
+          }
+        }
+      }
+      @include media-breakpoint-down(xs) {
+        padding: .2em .2em .4em;
+        position: relative;
+        text-align: center;
+        font-size: .8em;
+        background: #F5F5F5;
+        border-left: 1px solid rgba(112, 112, 112, .2);
+        &:first-child {
+          border-left: none;
+        }
+      }
+      a {
+        color: #969696;
+        font-size: .9em;
+      }
+      &.current-menu-item,
+      &.current-page-ancestor {
+        @include media-breakpoint-down(xs) {
+          background: #fff;
+        }
+        &:after {
+          content: '';
+          background: $brand-color;
+          font-size: 18px;
+          line-height: 17px;
+        }
+        a {
+          color: $brand-color;
+        }
+      }
+    }
+  }
+  .post {
+    color: rgba(#474C3E, .8);
+    .aligncenter {
+      display: block;
+      margin: 0 auto;
+    }
+    img {
+      max-width: 100%;
+      @include media-breakpoint-down(xs){
+        height: auto;
+      }
+    }
+  }
+}

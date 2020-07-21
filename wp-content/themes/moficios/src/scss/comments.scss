@@ -1,0 +1,172 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/buttons";
+@import "variables";
+@import "banners";
+@import "video_container";
+
+#comments-matches {
+  h1 {
+    color: $brand-color;
+    font-size: 28px;
+  }
+  .fluid {
+    padding: 0px 5px;
+  }
+  .mb-3, .my-3 {
+    margin-bottom: 25px !important;
+  }
+  .list-posts {
+    .hero {
+      h2 {
+        color: #000000 !important;
+        a {
+          color: #000000 !important;
+        }
+      }
+      @include media-breakpoint-up(sm) {
+        .post {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          background: #fff;
+          box-shadow: 0 10px 30px rgba(#000, .15);
+          p {
+            text-align: justify;
+            color: #717171;
+            font-size: 16px;
+            line-height: 26px;
+          }
+          .date {
+            font-size: 12px;
+            margin-bottom: 15px;
+          }
+          .link_a {
+            width: 50%;
+            flex: none;
+          }
+          a {
+            float: right;   
+            font-size: 14px;
+            color: #CF161B; 
+            i {
+                font-size: 22px;
+                font-style: normal;
+                position: relative;
+                display: inline-block;
+                vertical-align: middle;
+                svg {
+                  width: 15px;
+                  height: 15px;
+                  path {
+                    fill: #CF161B !important;
+                    stroke-width: 1px;
+                    stroke: #CF161B;
+                  }
+                }
+            }
+          }
+          .content {
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+          }
+          h2 {
+            font-size: 30px;
+            line-height: 35px;
+            margin-bottom: 15px;
+            a {
+                font-size: 30px;
+                line-height: 35px;
+            }
+          }
+          .excerpt {
+              color: #717171;
+              font-size: 16px;
+              line-height: 26px;
+          }
+          img {
+            width: 100%;
+            min-height: 300px;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+    .post {
+      .content {
+        padding: 1em;
+      }
+      a {
+        text-decoration: none;
+      }
+      img {
+        width: 100%;
+        border-radius: 5px;
+      }
+      h2 {
+        color: $brand-color;
+        font-size: 16px;
+        font-family: 'AllerBold';
+        a {
+          color: $brand-color;
+          font-size: 16px;
+          font-family: 'AllerBold';
+        }
+      }
+      .excerpt {
+        color: #717171;
+        font-size: 12px;
+        margin-bottom: 25px;
+      }
+      .date {
+        color: #969696;
+        font-size: 12px;
+        margin-bottom: 5px;
+        .line {
+          width: 40px;
+          height: 1px;
+          background: #969696;
+          display: inline-block;
+          margin: .2em .8em 0;
+        }
+      }
+      .view-more {
+        color: $brand-color;
+        font-size: 12px;
+        i {
+            font-style: normal;
+            font-size: 20px;
+            vertical-align: middle;
+            position: relative;
+            top: -2px;
+            margin-left: 5px;
+            svg {
+                width: 14px;
+                height: 12px;
+                path {
+                    fill: #eb8831 !important;
+                    stroke: #eb8831;
+                }
+            }
+        }
+      }
+    }
+  }
+  .pagination {
+    .nav {
+      a {
+        border: 1px solid #b0b3b4;
+        padding: .75em 2em;
+        border-radius: 5px;
+        color: #b0b3b4;
+        font-size: .9em;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

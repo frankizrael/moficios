@@ -1,0 +1,106 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+@import "variables";
+
+#autocontrol {
+	color: $color-gris;
+	font-size: 14px;
+	h1 {
+	    color: $brand-color;
+	}
+	.item-my_form {
+	    position: relative;
+	    background: rgba(228, 228, 228, 0.3);
+	    padding: 30px 44px;
+	    margin: 50px 0px;
+	    border-radius: 5px;
+	    .item-my_form__icon {
+		    position: absolute;
+		    left: 5px;
+		    top: -20px;
+		    background: white;
+		    border-radius: 50%;
+		    svg {
+			    width: 40px;
+			    height: 40px;
+			}
+			img {
+			    width: 40px;
+			    height: 40px;
+			}
+		}
+		.item-my_form__content {
+			.descp {
+			    margin-bottom: 25px;
+			    min-height: 42px;
+			}
+			.form-basic {
+			    max-width: 225px;
+			    .my-input-item {
+			    	label {
+					    display: block;
+					    font-size: 12px;
+					}
+					input {
+					    width: 100%;
+					    padding: 12px 10px;
+					    padding-bottom: 13px;
+					    border-radius: 5px;
+					    border: solid 1px #C7C7C7;
+					    outline: none;
+					}
+					select {
+					    width: 100%;
+					    padding: 12px 10px;
+					    padding-bottom: 13px;
+					    border-radius: 5px;
+					    border: solid 1px #C7C7C7;
+					    outline: none;
+					}
+			    }
+			    .my-button-item {
+				    margin-top: 5px;
+				    button {
+					    border: none;
+					    background: #F78F1E;
+					    border-radius: 5px;
+					    color: white;
+					    padding: 14px 10px;
+					    display: block;
+					    width: 100%;
+					    font-size: 14px;
+					}
+				}
+			}
+		}
+	}
+	.my-terms-and-conditions {
+		h2 {
+		    font-size: 14px;
+		    margin-bottom: 25px;
+		    margin-top: 25px;
+		}
+		ul {
+		    padding-left: 0px;
+		    margin: 0px;
+		    list-style: none;
+		    li {
+			    padding-left: 20px;
+			    position: relative;
+			    margin-bottom: 15px;
+			    &:before {
+				    content: '-';
+				    position: absolute;
+				    left: 0;
+				}
+			}
+		}
+	}
+	.col-md-6 {
+		@include media-breakpoint-down(md) {
+	        flex: 0 0 100% !important;
+    		max-width: 100% !important;
+	    }
+	}
+}

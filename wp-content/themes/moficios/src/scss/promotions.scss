@@ -1,0 +1,114 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/card";
+@import "variables";
+
+#promotions {
+  padding: 30px 5px;
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 15px;
+    h1 {
+      color: $brand-color;
+      font-size: 28px;
+      margin: 0;
+    }
+  }
+  .content {
+    transition: .25s;
+  }
+  .scroll-wrapper {
+    @include media-breakpoint-down(md) {
+      overflow-x: auto;
+      .filters {
+        width: 125%;
+      }
+    }
+  }
+  hr {
+    width: calc(100% - 30px);
+  }
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
+    a {
+      color: rgba(#000, .5);
+      height: 100%;
+      line-height: 300%;
+      font-size: 14px;
+      margin-left: 40px;
+      &:hover {
+        text-decoration: none;
+      }
+      &.active {
+        color: $brand-color;
+        border-bottom: 3px solid $brand-color;
+      }
+    }
+  }
+  .list-promotions {
+    .card {
+      border: none;
+      transition: .5s;
+      border-radius: 0;
+      &:hover {
+        box-shadow: 0 10px 30px rgba(#000, .16);
+        transition: .5s;
+        text-decoration: none;
+      }
+      .card-img-top {
+        border-radius: 5px;
+      }
+      .card-category {
+        color: #969696;
+        margin-bottom: 2px;
+        font-size: 12px;
+        line-height: 14px;
+      }
+      .card-title {
+        color: $brand-color;        
+        margin-bottom: 8px;
+        font-size: 16px;
+      }
+      .card-text {
+        font-size: 12px !important;
+        color: #717171;
+        margin-bottom: 25px;
+      }
+      .card-link {
+        font-size: 12px;
+        color: $brand-color;
+        i {
+          display: inline-block;
+          margin-left: 5px;
+          svg {
+              width: 22px;
+              height: 14px;
+              path {
+                  fill: #eb8831 !important;
+                  stroke-width: 1px;
+                  stroke: #eb8831;
+              }
+          }
+        }
+      }
+    }
+  }
+  .pagination {
+    .nav {
+      a {
+        border-radius: 5px;
+        color: rgba(#474C3E, .8);
+        border: 1px solid rgba(#474C3E, .7);
+        padding: 1.5em 2.5em;
+        font-size: .75em;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

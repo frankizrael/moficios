@@ -1,0 +1,39 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/buttons";
+@import "variables";
+@import "banners";
+@import "video_container";
+
+#single-comments-matches {
+  h1 {
+    margin-top: 10px;
+    color: #333333;
+  }
+  .featured {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  .content {
+    text-align: justify;
+    h4 {
+      color: #b1b1b1;
+      font-size: .9em;
+      font-weight: 600;
+      margin-bottom: -5px;
+      margin-top: 2.25em;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    h3 {
+      color: #4c4c4d;
+    }
+    p {
+      color: rgba(#4c4c4d, .8);
+      font-size: .9em;
+    }
+  }
+}

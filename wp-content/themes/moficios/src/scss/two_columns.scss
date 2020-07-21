@@ -1,0 +1,32 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+@import "variables";
+
+#two-columns {
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4em 0;
+    .subtitle {
+      color: #474C3E;
+      font-size: 14px;
+      margin-bottom: -10px;
+    }
+    .title {
+      color: $brand-color;
+      font-size: 40px;
+    }
+    .text {
+      color: rgba(#474C3E, .8);
+      font-size: 14px;
+    }
+  }
+  .list-logos {
+    img {
+      @include media-breakpoint-down(md) {
+        width: 100%!important;
+      }
+    }
+  }
+}
