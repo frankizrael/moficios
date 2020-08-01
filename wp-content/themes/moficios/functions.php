@@ -123,31 +123,6 @@ function custom_logo_class($html) {
 }
 add_filter('get_custom_logo', 'custom_logo_class', 10);
 
-/* Register sidebar */
-register_sidebar(array(
-	'name' => 'Footer',
-	'id' => 'footer-sidebar',
-	'before_widget' => '<div id="%1$s" class="col-12 col-md mb-3 mb-md-0 widget %2$s">',
-	'after_widget'  => '</div>',
-));
-
-register_sidebar(array(
-	'name' => 'Últimos resultados',
-	'id' => 'last-result-sidebar',
-	'before_widget' => '<div id="%1$s" class="widget %2$s">',
-	'after_widget'  => '</div>',
-    'before_title'  => '<h4 class="widgettitle">',
-	'after_title'   => "</h4>\n",
-));
-
-register_sidebar(array(
-	'name' => 'Comentarios partidos',
-	'id' => 'comments-matches-sidebar',
-	'before_widget' => '<div id="%1$s" class="widget %2$s">',
-	'after_widget'  => '</div>',
-	'before_title'  => '<h4 class="widgettitle">',
-	'after_title'   => "</h4>\n",
-));
 
 /* Get last results */
 function get_last_results($term_id, $posts=5, $paged=1) {
@@ -574,7 +549,7 @@ add_action('wp_ajax_nopriv_loadpeople', 'get_loadPeople');
 add_action('wp_ajax_loadpeople', 'get_loadPeople');
 
 
-/*loadPoints*/
+/*add valorait*/
 function get_addValoration() {
 	$comment = filter_input(INPUT_GET, 'comment');
 	$valoration = filter_input(INPUT_GET, 'valoration');
@@ -616,6 +591,8 @@ function get_addValoration() {
 add_action('wp_ajax_nopriv_addvaloration', 'get_addValoration');
 add_action('wp_ajax_addvaloration', 'get_addValoration');
 
+/**/
+
 
 /* Remove prefix */
 function remove_archive_prefix($title) {
@@ -629,61 +606,309 @@ function tn_custom_excerpt_length($length) {
 }
 add_filter('excerpt_length', 'tn_custom_excerpt_length', 999);
 
-/* Get last result pagination */
-function get_last_result_paged() {
-	$term_id = filter_input(INPUT_GET, 'term_id');
-	$paged = filter_input(INPUT_GET, 'paged');
-	$last_results = get_last_results($term_id, 5, $paged);
-	foreach ($last_results->posts as $last_result): ?>
-    <div class="last-result d-flex align-items-center jsResult">
-        <img src="<?php echo get_the_post_thumbnail_url($last_result->ID, 'full') ?>" alt="<?php echo $last_result->post_title ?>" class="rounded shadow jsVideoEmisor" style="width: auto;">
-        <div class="content">
-            <div class="date"><span style="text-transform: none;"><?php echo the_field('fecha',$last_result->ID) ?></div>
-            <div class="content-bassis"><?php echo wpautop($last_result->post_content, true) ?></div>
-        </div>
-        <a href="javascript:void(0)" class="view-more jsVideoEmisor">➜</a>
-        <div class="last-result-iframe-video jsVideoReceptor" style="display: none" data-iframe='<?php echo the_field('video',$last_result->ID) ?>' data-date='<?php echo the_field('fecha',$last_result->ID) ?>' data-title="<?php echo $last_result->post_title ?>" data-description="<?php echo $last_result->post_content ?>"></div>
-    </div>
-    <?php if ($last_result != end($last_results->posts)): ?>
-    <hr class="my-3">
-    <?php endif; endforeach;
-    wp_die();
-}
-add_action('wp_ajax_nopriv_last_results', 'get_last_result_paged');
-add_action('wp_ajax_last_results', 'get_last_result_paged');
+/* ajaxlogin */
+function get_loginprofesional() {
+	$user = filter_input(INPUT_GET, 'user');
+	$pass = filter_input(INPUT_GET, 'pass');
+	$args = array(
+	  'numberposts' => -1,
+	  'post_type'   => 'profesional'
+	);	 
+	$profesionals = get_posts( $args );
+	$user_asig = 0;
+	$pass_asig = 0;
+	$idprod = 0;
 
-/* all last result filter */
-function get_all_result_p() {
-	$term_id = $_GET['term_id'];
-	$title = $_GET['title'];
-	$last_results = get_all_results($title, $term_id, -1, -1);
-	if (!empty($last_results->posts)) {
-	foreach ($last_results->posts as $last_result): ?>
-	<li>
-		<div class="content-list-result jsResult">
-			<div class="content-list-imagen">
-				<a href="javascript:void(0)" class="jsVideoEmisor">
-				<img src="<?php echo get_the_post_thumbnail_url($last_result->ID, 'full') ?>" alt="<?php echo $last_result->post_title ?>" class="rounded shadow" style="width: auto;"></a>
-			</div>
-			<div class="content-list-text">
-				<div class="contentRight">
-                    <h2><a href="javascript:void(0)" class="jsVideoEmisor"><?php echo $last_result->post_title ?></a></h2>
-                </div>
-				<div class="jsVideoReceptor" style="display: none" data-iframe='<?php echo the_field('video',$last_result->ID) ?>' data-date='<?php echo the_field('fecha',$last_result->ID) ?>' data-title="<?php echo $last_result->post_title ?>" data-description="<?php echo $last_result->post_content ?>"></div> 
-			</div>
-		</div>
-	</li>
-	<?php
-	endforeach;
-	} else {
-		?>
-		<li class="notdata">No se encontraron resultados, prueba de nuevo</li>
-		<?php
+	foreach ($profesionals as $pro) {
+		if (get_the_title($pro->ID) == $user) {
+			$user_asig = 1;	
+			if (get_field('password', $pro->ID) == $pass) {
+				$pass_asig = 1;	
+				$idprod = $pro->ID;
+			}
+		} 
+	}	
+	$term_obj_list = get_the_terms( $idprod, 'category' );
+	$terms_name = array();	
+	foreach ($term_obj_list as $tt) {
+		array_push($terms_name,$tt->name);
 	}
+	if ($user_asig == 1) {
+		if ($pass_asig == 1) {
+			$msj = array(
+				'acess' 				=> 1,
+				'key' 					=> 'ACCESS','msj'=>'Acceso autorizado',
+				'id'					=> $idprod,
+				'nombre' 				=> get_field('nombre',$idprod),
+				'apellido' 				=> get_field('apellido',$idprod),
+				'dni' 					=> get_the_title($idprod),
+				'imagen' 				=> get_the_post_thumbnail_url($idprod),
+				'direccion' 			=> get_field('direccion',$idprod),
+				'correo' 				=> get_field('correo',$idprod),
+				'telefono' 				=> get_field('telefono',$idprod),
+				'fecha_nacimiento' 		=> get_field('fecha_nacimiento',$idprod),
+				'cualidades' 			=> get_field('cualidades',$idprod),
+				'antecedentes_penales' 	=> get_field('antecedentes_penales',$idprod),
+				'carnet_sanidad' 		=> get_field('carnet_sanidad',$idprod),
+				'categories'			=> $terms_name,
+				'trabajos'				=> get_field('trabajos',$idprod)
+			);
+		} else {
+			$msj = array('acess' => 0,'key'=>'ERROR_PASS','msj'=>'Password incorrecto');			
+		}
+	} else {
+		$msj = array('acess' => 0,'key'=>'ERROR_USER','msj'=>'Usuario no encontrado');		
+	}
+	echo json_encode($msj);
 	wp_die();
 }
-add_action('wp_ajax_all_result', 'get_all_result_p');
-add_action('wp_ajax_nopriv_all_result', 'get_all_result_p');
+add_action('wp_ajax_nopriv_loginprofesional', 'get_loginprofesional');
+add_action('wp_ajax_loginprofesional', 'get_loginprofesional');
+
+
+/*add valorait*/
+function get_changedatafirst() {
+	$user_id = filter_input(INPUT_GET, 'user_id');
+	$nombre = filter_input(INPUT_GET, 'nombre');
+	$apellido = filter_input(INPUT_GET, 'apellido');
+	$direction = filter_input(INPUT_GET, 'direction');
+	$correo = filter_input(INPUT_GET, 'correo');
+	$telefono = filter_input(INPUT_GET, 'telefono');
+	$datenac = filter_input(INPUT_GET, 'datenac');
+
+
+	//recalculate
+	update_field( 'nombre', $nombre, $user_id );
+	update_field( 'apellido', $apellido, $user_id );
+	update_field( 'direccion', $direction, $user_id );
+	update_field( 'correo', $correo, $user_id );
+	update_field( 'telefono', $telefono, $user_id );
+    update_field( 'fecha_nacimiento', $datenac, $user_id );	
+
+    echo get_field('fecha_nacimiento',$user_id);
+	wp_die();
+}
+add_action('wp_ajax_nopriv_changedatafirst', 'get_changedatafirst');
+add_action('wp_ajax_changedatafirst', 'get_changedatafirst');
+
+
+
+function get_changeimagenprof() {
+	/*$user_id = filter_input(INPUT_GET, 'user_id');
+	$file = filter_input(INPUT_GET, 'file');
+	$filename = basename($file);
+*/
+	/*$filename = basename($file);
+	$upload_file = wp_upload_bits($filename, null, file_get_contents($file));
+	if (!$upload_file['error']) {
+		$wp_filetype = wp_check_filetype($filename, null );
+		$attachment = array(
+			'post_mime_type' => $wp_filetype['type'],
+			'post_parent' => $user_id,
+			'post_title' => preg_replace('/\.[^.]+$/', '', $filename),
+			'post_content' => '',
+			'post_status' => 'inherit'
+		);
+		$attachment_id = wp_insert_attachment( $attachment, $upload_file['file'], $user_id );
+		if (!is_wp_error($attachment_id)) {
+			require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+			$attachment_data = wp_generate_attachment_metadata( $attachment_id, $upload_file['file'] );
+			wp_update_attachment_metadata( $attachment_id,  $attachment_data );
+		}
+	}*/
+	//echo 
+	/*
+	$wp_filetype = wp_check_filetype( $getImageFile, null );
+	$attachment_data = array(
+	    'post_mime_type' => $wp_filetype['type'],
+	    'post_title' => sanitize_file_name( $getImageFile ),
+	    'post_content' => '',
+	    'post_status' => 'inherit'
+	);
+	$attach_id = wp_insert_attachment( $attachment_data, $getImageFile, $user_id );*/
+	/*$wp_filetype = wp_check_filetype($filename, null );
+	$attachment = array(
+		'post_mime_type' => $wp_filetype['type'],
+		'post_parent' => $user_id,
+		'post_title' => preg_replace('/\.[^.]+$/', '', $filename),
+		'post_content' => '',
+		'post_status' => 'inherit'
+	);
+	$attachment_id = wp_insert_attachment( $attachment, $upload_file, $parent_post_id );
+	if (!is_wp_error($attachment_id)) {
+		require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+		$attachment_data = wp_generate_attachment_metadata( $attachment_id, $upload_file['file'] );
+		wp_update_attachment_metadata( $attachment_id,  $attachment_data );
+	}
+
+	echo get_the_post_thumbnail_url($user_id);*/
+	wp_die();
+}
+add_action('wp_ajax_nopriv_changeimagenprof', 'get_changeimagenprof');
+add_action('wp_ajax_changeimagenprof', 'get_changeimagenprof');
+
+
+function file_upload() {
+    $arr_img_ext = array('image/png', 'image/jpeg', 'image/jpg', 'image/gif');
+    $user_id = $_POST["user"];
+    if (in_array($_FILES['file']['type'], $arr_img_ext)) {
+        $upload_file = wp_upload_bits($_FILES["file"]["name"], null, file_get_contents($_FILES["file"]["tmp_name"]));
+        if (!$upload_file['error']) {
+			$attachment = array(
+				'post_mime_type' => $_FILES['file']['type'],
+				'post_parent' => $user_id,
+				'post_title' => preg_replace('/\.[^.]+$/', '', $_FILES["file"]["name"]),
+				'post_content' => '',
+				'post_status' => 'inherit'
+			);
+			$attachment_id = wp_insert_attachment( $attachment, $upload_file['file'], $user_id );
+			if (!is_wp_error($attachment_id)) {
+				require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+				$attachment_data = wp_generate_attachment_metadata( $attachment_id, $upload_file['file'] );
+				wp_update_attachment_metadata( $attachment_id,  $attachment_data );
+				//add thmbnail
+				set_post_thumbnail( $user_id, $attachment_id );
+			}
+		}     
+    }
+    echo get_the_post_thumbnail_url($user_id);
+    wp_die();
+}
+add_action( 'wp_ajax_file_upload', 'file_upload' );
+add_action( 'wp_ajax_nopriv_file_upload', 'file_upload' );
+
+
+
+function addcategoryfi() {
+	$user_id = filter_input(INPUT_GET, 'user_id');
+	$valor = filter_input(INPUT_GET, 'valor');
+
+
+	$term_obj_list = get_the_terms( $user_id, 'category' );
+	$terms_id = array();	
+	foreach ($term_obj_list as $tt) {
+		array_push($terms_id,$tt->term_id);
+	}
+	array_push($terms_id,$valor);
+
+	wp_set_post_categories( $user_id, $terms_id );
+
+	$term_obj_list2 = get_the_terms( $user_id, 'category' );
+	$terms_name = array();	
+	foreach ($term_obj_list2 as $tt) {
+		array_push($terms_name,$tt->name);
+	}
+
+	echo json_encode($terms_name);
+
+	
+
+	wp_die();
+}
+add_action( 'wp_ajax_addcategoryfi', 'addcategoryfi' );
+add_action( 'wp_ajax_nopriv_addcategoryfi', 'addcategoryfi' );
+
+
+function edittextarea() {
+	$user_id = filter_input(INPUT_GET, 'user_id');
+	$valor = filter_input(INPUT_GET, 'valor');
+
+	update_field('cualidades', $valor, $user_id );
+	echo get_field('cualidades',$user_id);
+	wp_die();
+}
+add_action( 'wp_ajax_edittextarea', 'edittextarea' );
+add_action( 'wp_ajax_nopriv_edittextarea', 'edittextarea' );
+
+
+function array_file_upload() {
+    $arr_img_ext = array('image/png', 'image/jpeg', 'image/jpg', 'application/pdf');
+    $user_id = $_POST["user"];
+    $atrib = $_POST["atrib"];
+    if (in_array($_FILES['file']['type'], $arr_img_ext)) {
+        $upload_file = wp_upload_bits($_FILES["file"]["name"], null, file_get_contents($_FILES["file"]["tmp_name"]));
+        if (!$upload_file['error']) {
+			$attachment = array(
+				'post_mime_type' => $_FILES['file']['type'],
+				'post_parent' => $user_id,
+				'post_title' => preg_replace('/\.[^.]+$/', '', $_FILES["file"]["name"]),
+				'post_content' => '',
+				'post_status' => 'inherit'
+			);
+			$attachment_id = wp_insert_attachment( $attachment, $upload_file['file'], $user_id );
+			if (!is_wp_error($attachment_id)) {
+				require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+				$attachment_data = wp_generate_attachment_metadata( $attachment_id, $upload_file['file'] );
+				wp_update_attachment_metadata( $attachment_id,  $attachment_data );
+				//add thmbnail
+				if ($atrib == 'registro') {
+					update_field('antecedentes_penales', $upload_file['url'], $user_id );	
+					echo get_field('antecedentes_penales',$user_id);
+				}
+				if ($atrib == 'carnet') {
+					update_field('carnet_sanidad', $upload_file['url'], $user_id );	
+					echo get_field('carnet_sanidad',$user_id);
+				}
+			}
+		}
+    }    
+    wp_die();
+}
+add_action( 'wp_ajax_array_file_upload', 'array_file_upload' );
+add_action( 'wp_ajax_nopriv_array_file_upload', 'array_file_upload' );
+
+function pippin_get_image_id($image_url) {
+    global $wpdb;
+    $attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url )); 
+        return $attachment[0]; 
+}
+
+function job_update() {
+    $arr_img_ext = array('image/png', 'image/jpeg', 'image/jpg', 'image/gif');
+    $user_id = $_POST["user"];
+    if (in_array($_FILES['file']['type'], $arr_img_ext)) {
+        $upload_file = wp_upload_bits($_FILES["file"]["name"], null, file_get_contents($_FILES["file"]["tmp_name"]));
+        if (!$upload_file['error']) {
+			$attachment = array(
+				'post_mime_type' => $_FILES['file']['type'],
+				'post_parent' => $user_id,
+				'post_title' => preg_replace('/\.[^.]+$/', '', $_FILES["file"]["name"]),
+				'post_content' => '',
+				'post_status' => 'inherit'
+			);
+			$attachment_id = wp_insert_attachment( $attachment, $upload_file['file'], $user_id );
+			if (!is_wp_error($attachment_id)) {
+				require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+				$attachment_data = wp_generate_attachment_metadata( $attachment_id, $upload_file['file'] );
+				wp_update_attachment_metadata( $attachment_id,  $attachment_data );
+
+
+
+				//add thmbnail				
+				// Get the current value.
+				$jobs = get_field('field_5f15c73657b8a',$user_id);
+				$arrayJobs = array();
+				foreach ($jobs as $job) {
+					array_push($arrayJobs, array('field_5f15c74457b8b' => pippin_get_image_id($job['imagen'])));
+				}
+				array_push($arrayJobs, array('field_5f15c74457b8b' => $attachment_id));
+				// Update with new value.				
+				update_field('field_5f15c73657b8a', $arrayJobs, $user_id);
+				/*$jobsnew = get_field('field_5f15c73657b8a',$user_id);
+				for ($a=0;$a<count($jobsnew);$a++) {
+					update_sub_field( array('field_5f15c73657b8a', $a, 'imagen'), $arrayJobs[$a]['imagen'], $user_id );	
+				}*/
+				//update_sub_field( array('trabajos', $countplus, 'imagen'), $upload_file['file'], $user_id );
+			}
+		}     
+    }    
+    echo json_encode(get_field('trabajos',$user_id));
+    wp_die();
+}
+add_action( 'wp_ajax_job_update', 'job_update' );
+add_action( 'wp_ajax_nopriv_job_update', 'job_update' );
+
+
 
 /* Reduce terms to names */
 function reduce_to_names($term) {
@@ -708,38 +933,6 @@ function google_api_key() {
 	acf_update_setting('google_api_key', 'AIzaSyCcBJvjPVyljL0ErfTjP14Y6AINCap-WoU');
 }
 add_action('acf/init', 'google_api_key');
-
-/* Get filter in how to play */
-function get_pages_how_to_play() {
-	$filter_term = filter_input(INPUT_GET, 'category');
-    $pages = new WP_Query(array(
-        'post_type' => 'page',
-        'post_status' => 'publish',
-        'posts_per_page' => -1,
-        'meta_key' => 'tutorial_category',
-        'meta_value' => $filter_term
-    ));
-    $pages = $pages->posts;
-    foreach ($pages as $page):
-    if ($page->ID == 314 || $page->ID == 824 || $page->ID == 821 || $page->ID == 826) continue; ?>
-    <div class="page col-md-6 mb-4">
-        <img src="<?php echo get_the_post_thumbnail_url( $page->ID ) ?>" alt="<?php echo $page->post_title ?>" class="w-100 rounded mb-3">
-        <div class="px-3 px-md-4">
-            <div class="date" style="text-transform: none;"><span><?php echo date_i18n('l', strtotime($hero->post_date)) ?></span> <?php echo date_i18n('d', strtotime($hero->post_date)) ?> de <span style="margin-left: 5px;margin-right: 5px;"><?php echo date_i18n('F', strtotime($hero->post_date)) ?></span> de <?php echo date_i18n('Y', strtotime($hero->post_date)) ?></div>
-            <a href="<?php echo get_the_permalink($page->ID) ?>">
-                <h4 class="mb-0"><?php echo $page->post_title ?></h4>
-            </a>
-            <div class="post"><?php echo get_the_excerpt($page->ID) ?></div>
-            <div class="text-right">
-                <a href="<?php echo get_the_permalink($page->ID) ?>" class="view-more">Ver más <i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 31.49 31.49" style="enable-background:new 0 0 31.49 31.49;" xml:space="preserve"><path style="fill:#1E201D;" d="M21.205,5.007c-0.429-0.444-1.143-0.444-1.587,0c-0.429,0.429-0.429,1.143,0,1.571l8.047,8.047H1.111C0.492,14.626,0,15.118,0,15.737c0,0.619,0.492,1.127,1.111,1.127h26.554l-8.047,8.032c-0.429,0.444-0.429,1.159,0,1.587c0.444,0.444,1.159,0.444,1.587,0l9.952-9.952c0.444-0.429,0.444-1.143,0-1.571L21.205,5.007z"/></svg></i></a>
-            </div>
-        </div>
-    </div>
-    <?php endforeach;
-	wp_die();
-}
-add_action('wp_ajax_nopriv_how_to_play', 'get_pages_how_to_play');
-add_action('wp_ajax_how_to_play', 'get_pages_how_to_play');
 
 /* get add faq valoration positive */
 function get_sendpositivevaloration() {

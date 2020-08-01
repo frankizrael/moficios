@@ -128,7 +128,7 @@ $singleid = get_the_ID();
 			<?php
 				
 				$args = array(
-					'numberposts'	=> -1,
+					'numberposts'	=> 6,
 					'post_type'		=> 'comments',
 					'meta_key'		=> 'profesional',
 					'meta_value'	=> $singleid

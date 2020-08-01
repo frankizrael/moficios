@@ -104,33 +104,24 @@ get_header();
 	<div class="contenedor">
 		<h2>Elige a <strong>tu maestro</strong></h2>
 		<div class="item-maestro">
-			<div class="subitems-maestro">
-				<div class="subitem-number-none active">
-					<h2>1</h2>
+			<?php
+				$proceso = get_field('proceso');
+				$a = 1;
+				foreach ($proceso as $pp) {
+					?>
+				<div class="subitems-maestro">
+					<div class="subitem-number<?php if ($a == 1) { echo '-none'; } ?> active">
+						<h2><?php echo $a; ?></h2>
+					</div>
+					<div class="subitem-text">
+						<h4><?php echo $pp['title']; ?></h4>
+						<p><?php echo $pp['desc']; ?></p>
+					</div>
 				</div>
-				<div class="subitem-text">
-					<h4>Elige el oficio</h4>
-					<p>Seleccione la provincia el oficio, distrito y zona</p>
-				</div>
-			</div>
-			<div class="subitems-maestro">
-				<div class="subitem-number active">
-					<h2>2</h2>
-				</div>
-				<div class="subitem-text">
-					<h4>Elige el oficio</h4>
-					<p>Seleccione la provincia el oficio, distrito y zona</p>
-				</div>
-			</div>
-			<div class="subitems-maestro">
-				<div class="subitem-number ">
-					<h2>3</h2>
-				</div>
-				<div class="subitem-text ">
-					<h4>Elige el oficio</h4>
-					<p>Seleccione la provincia el oficio, distrito y zona</p>
-				</div>
-			</div>
+					<?php
+				$a++;
+				}
+			?>
 		</div>
 	</div>
 </section>
@@ -141,7 +132,7 @@ get_header();
 		    <div class="swiper-wrapper">
 		    	<?php
 		    		$args = array(
-					'numberposts'	=> 6,
+						'numberposts'	=> 6,
 						'post_type'		=> 'comments'
 					);
 					$comentarios = get_posts( $args );
@@ -153,10 +144,11 @@ get_header();
 							# Get the user's first and last name
 							$name = $new_user->first_name;
 							$last_name = $new_user->last_name;
+							$img_user = get_avatar_url( $user_id );
 		    	?>
 		      	<div class="swiper-slide" id="<?php echo $co->ID; ?>">
 		    		<div class="img-cliente">
-		    			<img src="<?php echo get_field( 'imagen', 'user_'.$user_id );?>" alt="">
+		    			<img src="<?php echo $img_user;?>" alt="">
 		    			<div class="info-trabajador">
 		    				<h5><?php echo $name;?></br><?php echo $lastname;?></h5>
 		    				<div class="calificacion">

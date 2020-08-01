@@ -1,8 +1,6 @@
 import '../scss/homee.scss';
-import "swiper/swiper-bundle.min.css";
 import Swiper from "swiper";
-
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 
 

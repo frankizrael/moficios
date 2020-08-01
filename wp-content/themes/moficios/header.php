@@ -23,10 +23,12 @@
                 <div class="login">
                     <?php
                         if ( is_user_logged_in() ) {
+                            $current_user = wp_get_current_user();                            
+                            $img = get_avatar_url( $current_user->ID );
                             ?>                            
                             <div class="item-perfil">
                                 <p>Tu</p>
-                                <img src="<?php echo get_template_directory_uri(); ?>/img/icon/img-perfil.png" alt="">
+                                <img src="<?php echo $img; ?>" alt="">
                             </div>             
                             <?php
                         } else {

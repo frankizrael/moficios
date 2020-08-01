@@ -16,12 +16,14 @@
   }
   .content {
     margin: 0 auto;
+    padding: 0px 30px;
     h1 {
-      color: $brand-color;
-      font-size: 1.5rem;
-      @include media-breakpoint-down(md) {
-        font-size: 1.2em;
-      }
+      color: #2658c8;
+      font-size: 30px;
+    }
+    h2 {
+      margin-top: 10px;
+      font-size: 18px;
     }
     .post {
       color: #474C3E;

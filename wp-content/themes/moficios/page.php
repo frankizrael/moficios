@@ -2,8 +2,8 @@
 set_query_var('ENTRY', 'page');
 get_header();
 ?>
-<div id="page" class="x-container shadow">
-	<div class="row">
+<div id="page" class="contenedor shadow">
+	<div class="row "> 
 		<div class="col-md-12">
 			<div class="cover">
 				<img src="<?php the_post_thumbnail_url( 'full' ) ?>" alt="<?php the_title() ?>">
