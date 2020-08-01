@@ -1,8 +1,3 @@
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/forms";
-
 header{
   display: flex;
   height: 70px;
@@ -11,6 +6,11 @@ header{
   z-index: 100;
   background-color: white;
   width: 100%;
+  .logoaa {
+    @include maxw(tablet_p) {
+      width: 80px;
+    }
+  }
   .contenedor {
     width: 100%;
     display: flex;
@@ -25,6 +25,11 @@ header{
         position: relative;
         display: flex;
         align-items: center;
+        p {          
+          @include maxw(tablet_p) {
+            text-align: center;
+          }
+        }
         .loginAa {
           position: absolute;
           bottom: -50px;
@@ -34,8 +39,13 @@ header{
           right: 0px;
           pointer-events: none;
           opacity: 0;
+          @include maxw(tablet_p) {
+            right: auto;
+            left: 50%;
+            transform: translateX(-50%);
+          }
           div {
-              margin-bottom: 0px;
+            margin-bottom: 0px;
           }
         }
         &:hover {
@@ -55,6 +65,11 @@ header{
         margin-left: 20px;
         border-radius: 6px;
         padding: 10px 0px;
+        @include maxw(tablet_p) {
+          margin-left: 5px;
+          width: 120px;
+          font-size: 14px;
+        }
       }
     }
     .item-perfil {
@@ -69,6 +84,9 @@ header{
       margin-right: 20px;
       padding-left: 10px;
       padding-right: 2px;
+      @include maxw(tablet_p) {
+        margin-right: 0px;
+      }
       p {
         color: #2658C8;
         font-size: 14px;
@@ -91,6 +109,11 @@ header{
   padding: 20px 40px;
   transform: translateX(110%);
   transition: 0.3s;
+  @include maxw(extra_width) {
+    width: 300px;
+    padding: 10px 15px;
+    overflow-y: scroll;
+  }
   h2 {
     margin-top: 0px;
     font-size: 25px;

@@ -3,12 +3,17 @@
 	background-color: #F6F8FE;
     padding-top: 70px;
     padding-bottom: 70px;
+
     &__login {
     	border-radius: 6px;
 	    width: 996px;
 	    margin: 45px auto;
 	    background-color: white;
 	    padding: 41px 30px;
+	    @include maxw(table_max) {
+	      width: 100%;
+	      padding: 20px 20px;
+	    }
 	    h1 {
 	    	text-align: center;
 	    }
@@ -73,6 +78,9 @@
 	    width: 996px;
 	    margin: 45px auto;
 	    background-color: white;
+	    @include maxw(table_max) {
+	      width: 100%;
+	    }
     }    
     &__tab {
     	ul {
@@ -89,6 +97,14 @@
 			    font-weight: 400;
 			    background: #f3f3f3;
 			    cursor: pointer;
+			    @include maxw(table_max) {
+			    	padding: 10px;
+				    font-size: 14px;
+				    display: flex;
+				    align-items: center;
+				    justify-content: center;
+				    line-height: 18px;
+			    }
 			    &.active {
 			    	font-weight: 700;
 			    	background: white;
@@ -98,17 +114,29 @@
     }
     &__cont {
     	padding: 20px 40px;
+    	@include maxw(table_max) {
+	      padding: 20px;
+	    }
     	.flex {
     		display: flex;
     		justify-content: space-between;
     		flex-wrap: wrap;
+    		@include maxw(table_max) {
+		      display: block;
+		    }
     		.flex-50 {
     			width: calc(50% - 20px);
     			flex: none;
+    			@include maxw(table_max) {
+			      width: 100%;
+			    }
     		}
     		.flex-33 {
     			width: calc(33.33% - 20px);
     			flex: none;
+    			@include maxw(table_max) {
+			      width: 100%;
+			    }
     		}
     	}
 		.ro {
@@ -148,6 +176,9 @@
 			    margin-bottom: 0px;
 			    font-weight: 700;
 			    color: #2658c8;
+			    @include maxw(table_max) {
+			    	font-size: 14px;
+			    }
 			}
 			input {
 			    width: 100%;
@@ -269,6 +300,7 @@
 			ul {
 			    display: flex;
 			    list-style: none;
+			    flex-wrap: wrap;
 			    li {
 				    padding: 5px 10px;
 				    border: solid 1px #50acf5;
@@ -279,6 +311,7 @@
 				    background: #eef3ff;
 				    font-weight: 700;
 				    color: #31384c;
+				    margin-bottom: 5px;
 				}
 			}
 		}
@@ -297,6 +330,9 @@
 			    li {
 				    width: calc(33.33% - 20px);
 				    margin-bottom: 20px;
+				    @include maxw(table_max) {
+				    	width: calc(50% - 20px);
+				    }
 				    img {
 					    width: 100%;
 					    position: relative;
@@ -377,6 +413,12 @@
 				    color: white;
 				    border-radius: 7px;
 				    pointer-events: none;
+				}
+			}
+			.ro {
+				.col-full-50 {
+					width: 100% !important;
+					margin-bottom: 20px;
 				}
 			}
 		}

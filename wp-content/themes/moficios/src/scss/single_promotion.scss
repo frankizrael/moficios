@@ -23,9 +23,16 @@ section.cv-profile{
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 0;
+    @include maxw(table_max) {
+      width: 100%;
+      padding: 20px 0px;
+    }
     .col.izq{
       min-width: 50%;
       float: left;
+      @include maxw(table_max) {
+        min-width: 100%;
+      }
       .perfil-cv{
         display: flex;
         max-height: 88px;
@@ -106,6 +113,9 @@ section.cv-profile{
     }
     .col.der{
       width: 50%;
+      @include maxw(table_max) {
+        width: 100%;
+      }
       .div-contacto{
         display: flex;
         align-items: center;
@@ -149,6 +159,10 @@ section.cv-profile{
     }
     .img-trabajos{
       width: 100%;
+      @include maxw(table_max) {
+        width: 100%;
+        padding: 0px 20px;
+      }
       .swiper-container{
         height: auto;
         padding-bottom: 0px;
@@ -161,6 +175,10 @@ section.cv-profile{
   }
   div.opiniones{   
     width: 100%;
+    @include maxw(table_max) {
+      width: 100%;
+      padding: 0px 20px;
+    }
     .item-cliente {
           display: flex;
         flex-direction: row;
@@ -174,6 +192,9 @@ section.cv-profile{
           float: left;
           display: flex;
           flex-direction: row;
+          @include maxw(table_max) {
+            width: 100%;
+          }
           img{
             width: 45px;
             height: 45px;
@@ -203,6 +224,9 @@ section.cv-profile{
         }
         .comentario-cliente{
           width: 70%;
+          @include maxw(table_max) {
+            width: 100%;
+          }
           p{
           font-size: 13px;
           color: #8291A0;
@@ -260,6 +284,10 @@ section.add-comentario{
     margin: 0 auto;
     padding: 41px 30px;
     margin-bottom: 50px;
+    @include maxw(table_max) {
+      width: 100%;
+      padding: 20px 20px;
+    }
     .col.izq{
       float: left;
       width: 50%;

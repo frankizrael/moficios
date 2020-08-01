@@ -17,7 +17,7 @@
     <header>
         <div class="contenedor">
             <a href="<?php echo site_url(); ?>">
-                <img src="<?php echo get_template_directory_uri(); ?>/img/logo_moficio.svg" alt="">
+                <img src="<?php echo get_template_directory_uri(); ?>/img/logo_moficio.svg" class="logoaa">
             </a>
             <div class="register-or-login">
                 <div class="login">
@@ -33,7 +33,7 @@
                             <?php
                         } else {
                             ?>
-                            <p><a href="javascript:void(0)">Registrate</a> o<strong><a href="javascript:void(0)"> ingresa</a> </strong></p>
+                            <p><a href="javascript:void(0)" class="reg">Registrate</a> o<strong><a href="javascript:void(0)"> ingresa</a> </strong></p>
                             <div class="loginAa">                        
                                 <?php do_action('facebook_login_button');?>
                             </div>
@@ -41,9 +41,7 @@
                         }
                     ?>
                 </div>
-                <a href="usuario.html">
-                    <a href="javascript:void(0)" class="oficio">Ofrece tu oficio</a>
-                </a>
+                <a href="javascript:void(0)" class="oficio">Ofrece tu oficio</a>
             </div>
         </div>
     </header>

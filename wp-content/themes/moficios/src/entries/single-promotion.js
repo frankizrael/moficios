@@ -9,6 +9,17 @@ var swiper = new Swiper('.img-trabajos .swiper-container', {
   pagination: {
     el: '.img-trabajos .swiper-pagination',
     clickable: true,
+  },
+  breakpoints: {
+    1400: {
+        slidesPerView: 4,
+    },
+    800: {
+        slidesPerView: 3,
+    },
+    0: {
+        slidesPerView: 2,
+    }
   }
 });
 

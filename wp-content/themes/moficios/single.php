@@ -110,12 +110,14 @@ $singleid = get_the_ID();
 				<div class="swiper-wrapper">
 					<?php
 						$trabajos = get_field('trabajos');
-						foreach ($trabajos as $tr) {
-							?>
-						<div class="swiper-slide">
-							<img src="<?php echo $tr['imagen']; ?>" alt="">
-						</div>
-							<?php
+						if ($trabajos) {
+							foreach ($trabajos as $tr) {
+								?>
+							<div class="swiper-slide">
+								<img src="<?php echo $tr['imagen']; ?>" alt="">
+							</div>
+								<?php
+							}
 						}
 					?>
 				</div>

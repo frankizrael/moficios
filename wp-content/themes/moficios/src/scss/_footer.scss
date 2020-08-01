@@ -2,6 +2,9 @@ footer{
   background-color: #31384C;
   height: auto;
   padding-top: 60px;
+  @include maxw(tablet_p) {
+    padding-top: 20px;
+  }
   .contenedor{
     .footer-nav {
         display: flex;
@@ -10,14 +13,22 @@ footer{
         align-items: baseline;
         padding-bottom: 70px;
         border-bottom: 1px solid rgba(200,219,246,0.5);
+        @include maxw(tablet_p) {
+          padding-bottom: 20px;
+        }
         .div.logo {
           margin-right: 107px;
+          @include maxw(tablet_p) {
+            display: none;
+          }
         }
         .items-footer{
           width: auto;
           display: flex;
           flex-direction: column;
-
+          @include maxw(tablet_p) {
+            width: calc(50% - 20px);
+          }
           h4{
             color: #C8DBF6;
             font-size: 14px;  
@@ -33,12 +44,21 @@ footer{
         }
         .items-footer:nth-child(2){
           margin-right: 117px;
+          @include maxw(tablet_p) {
+            margin-right: 0px;
+          }
         }
         .items-footer:nth-child(3){
-        margin-right:  116px;
+          margin-right:  116px;
+          @include maxw(tablet_p) {
+            margin-right: 0px;
+          }
         }
         .items-footer:nth-child(4){
-        margin-right:  117px;
+          margin-right:  117px;
+          @include maxw(tablet_p) {
+            margin-right: 0px;
+          }
         }
     }
     .derechos-autor {
@@ -48,6 +68,12 @@ footer{
         height: 80px;
         align-items:center;
         color: #C8DBF6;
+        @include maxw(tablet_p) {
+          flex-direction: column-reverse;
+          padding-top: 20px;
+          height: auto;
+          padding-bottom: 20px;
+        }
         .item-copy{
           opacity: .55;
         }
@@ -55,8 +81,18 @@ footer{
           color: #C8DBF6;
           display: flex;
           align-items:center;
+          @include maxw(tablet_p) {
+            margin-bottom: 10px;
+            p {
+              display: none;
+            }
+          }
           img{
             margin-left: 21px;
+            @include maxw(tablet_p) {
+              margin-left: 10px;
+              margin-bottom: 5px;
+            }
           }
       }
     }

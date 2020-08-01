@@ -34,6 +34,9 @@ p strong {
 .contenedor {
   max-width: 1140px;
   margin: 0 auto;
+  @include maxw(tablet_p) {
+    max-width: calc(100% - 40px);
+  }
 }
 button.bot-blue {
   background-color: #2658C8;

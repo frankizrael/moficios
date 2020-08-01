@@ -10,23 +10,66 @@ section.map-home{
 	    padding-left: 140px;
 	    align-items: stretch;
 	    height: 100%;
+	    @include maxw(mylaptop) {
+	    	padding-left: 20px;
+	    }
+	    @include maxw(extra_width) {
+	    	width: 100%;
+	    	display: block;
+	    	padding-right: 20px;
+	    }
 		.col.izq{
 			width: 437px;
 			height: 100%;
     		flex: none;
+    		@include maxw(mylaptop) {
+		    	width: 350px;
+		    	padding-left: 0px;
+		    }
+		    @include maxw(extra_width) {
+		    	width: 100%;
+		    	display: block;
+		    	height: auto;
+		    	padding-right: 0px;
+		    }
 			h2{
 				width: 298px;
+				@include maxw(mylaptop) {
+			    	width: 100%;
+			    	font-size: 20px;
+				    margin-top: 15px;
+				    line-height: 24px;
+			    }
+			    @include maxw(extra_width) {
+			    	display: none;
+			    }
 			}
 			p{
 				margin-top: 16px;
 				font-weight: 400;
 				margin-bottom: 34px;
 				font-size: 16px;
+				@include maxw(extra_width) {
+			    	display: none;
+			    }
 			}
 			.selectores-padre{
 				width: 376px;
 				display: flex;
 				flex-direction: column;
+				@include maxw(mylaptop) {
+			    	width: 100%;
+			    }	
+			    @include maxw(extra_width) {
+			    	width: 100%;
+				    flex-direction: row;
+				    flex-wrap: wrap;
+				    justify-content: space-between;
+				    padding-top: 10px;
+				    .option_select {
+					    width: calc(50% - 10px);
+					}
+			    }
 				.selectores{
 					background-color: white;
 					border: unset;
@@ -63,6 +106,10 @@ section.map-home{
 				    align-items: center;
 				    justify-content: space-between;
 				    border-radius: 6px;
+				    @include maxw(extra_width) {
+						margin-top: 5px;
+						margin-bottom: 10px;   	
+					}
 					img{
 						background-color: white;
 						width: 18px;
@@ -82,6 +129,13 @@ section.map-home{
 		    height: 100%;
 		    flex: none;
 		    padding: 0px;
+		    @include maxw(mylaptop) {
+		    	width: calc(100% - 350px);
+		    }
+		    @include maxw(extra_width) {
+				width: 100%;
+				height: calc(100% - 220px);
+			}
 		    #gmap {
 			    height: 100%;
 			    width: 100%;
@@ -130,12 +184,26 @@ section.map-home{
 	}
 	.second-file {
 	    padding-top: 30px;
+	    @include maxw(extra_width) {
+	    	padding-top: 10px;
+	    }
+	}
+	.resultado-autores {
+	    max-height: 600px;
+	    overflow-y: scroll;
+	    @include maxw(extra_width) {
+	    	max-height: 170px;
+	    	padding-top: 10px;
+	    }
 	}
 	.resultado-busqueda{
 		display: flex;
 		flex-direction: row;
 		align-items: baseline;
 		margin-bottom: 20px;
+		@include maxw(extra_width) {
+	    	margin-bottom: 0px;
+	    }
 		h4{
 			display: flex;
 			font-size: 18px;
@@ -154,6 +222,11 @@ section.map-home{
 			color: #8291A0;
 			margin-left: 5px;
 			margin-bottom: 5px !important;
+			@include maxw(extra_width) {
+				display: inline-block !important;
+			    margin-top: 0px !important;
+			    margin-bottom: 0px !important;				
+			}
 		}
 	}
 	.resultado-autor{
@@ -164,6 +237,13 @@ section.map-home{
 	    border-radius: 10px;
 	    overflow: hidden;
 	    margin-bottom: 20px;
+	    @include maxw(tablet_p) {
+		    width: 100%;
+		}
+		@include maxw(extra_width) {
+			height: auto;
+    		margin-bottom: 5px;
+		}
 		.res-profile{
 			padding: 20px 20px 22px 25px;
 			padding-bottom: 0px;
@@ -241,6 +321,10 @@ section.map-home{
 					height: 36px;
 				}
 			}
+			@include maxw(extra_width) {
+				padding: 10px 20px 22px 25px;
+    			padding-bottom: 0px;
+			}
 		}
 		.res-especialidad{
 			display: flex;
@@ -285,6 +369,9 @@ section.map-home{
 				    transform: rotate(-90deg);
 				}
 			}
+			@include maxw(extra_width) {
+				padding: 5px 20px 10px 25px;
+			}
 		}
 	}
 }
@@ -297,14 +384,24 @@ section.solicitados{
 	    height: 433px;
 	    overflow: hidden;
 	    padding-bottom: 81px;
+	    @include maxw(tablet_p) {
+		    height: auto;
+		    padding-bottom: 20px;
+		}
 	    h2 {
 		    color: white;
 		    text-align: center;
 		    margin-bottom: 79px;
+		    @include maxw(tablet_p) {
+				margin: 20px 0px;
+			}
 		}
 		.swiper-container{
 			height: auto;
 			min-height: 167px;
+			@include maxw(extra_width) {
+				min-height: 20px;
+			}
 			.swiper-slide{
 				background-color: #2658C8;
 				img{
@@ -343,9 +440,16 @@ section.solicitados{
 }
 section.elige-maestro{
 	height: 400px;
+	@include maxw(tablet_p) {
+		height: auto;
+		margin-bottom: 20px;
+	}
 	.contenedor{
 		h2{
 			text-align: center;
+			@include maxw(tablet_p) {
+				margin-top: 20px;
+			}
 		}
 		.item-maestro{
 			width: 100%;
@@ -354,14 +458,26 @@ section.elige-maestro{
 			flex-wrap: wrap;
 			justify-content: space-between;
 			margin-top: 69px;
+			@include maxw(tablet_p) {
+				margin-top: 20px;
+			}
 			.subitems-maestro:nth-child(1) {
 			    width: 165px;
+			    @include maxw(tablet_p) {
+					width: 200px;
+				}
 			}
 			.subitems-maestro:nth-child(2) {
 			    width: 236px;
+			    @include maxw(tablet_p) {
+					width: 200px;
+				}
 			}
 			.subitems-maestro:nth-child(3) {
 			    width: 262px;
+			    @include maxw(tablet_p) {
+					width: 200px;
+				}
 			}
 			.subitems-maestro{
 				display: flex;
@@ -369,12 +485,15 @@ section.elige-maestro{
 				justify-content: center;
 				flex-direction: column;
 				align-items:center;
+				@include maxw(extra_width) {
+					margin-bottom: 20px;
+    				width: 100% !important;
+				}
 				.subitem-text{
-					h4{
-					font-size: 16px;
-					color: black;
-					margin-bottom: 15px;
-
+					h4 {
+						font-size: 16px;
+						color: black;
+						margin-bottom: 15px;
 					}
 					p{
 						font-size: 14px;
@@ -393,6 +512,9 @@ section.elige-maestro{
 					position: relative;
 					color: #CFD5DB;
 					background: white;
+					@include maxw(extra_width) {
+						margin-bottom: 0px;
+					}
 					h2{
 						font-family: 'Roboto', sans-serif;
 						font-weight: 700;
@@ -412,7 +534,6 @@ section.elige-maestro{
 				.subitem-number.active,.subitem-number-none.active{
 					background-color: #2658C8;
 					color: white;
-
 				}
 				.subitem-number.active:before {
 				    content: '';
@@ -423,6 +544,9 @@ section.elige-maestro{
 				    right: 0;
 				    z-index: -10;
 				    bottom: 40%;
+				    @include maxw(tablet_p) {
+						display: none;
+					}
 				}		
 			}
 		}
@@ -431,12 +555,22 @@ section.elige-maestro{
 section.clientes{
 	background-color: #F6F8FE;
 	height: 476px;
+	@include maxw(extra_width) {
+		height: auto;
+	}
 	.contenedor{
 		padding-top:68px;
+		@include maxw(extra_width) {
+			padding-top: 10px;
+		}
 		h2{
 			margin-bottom: 52px;
 			margin-top: 0;
 			text-align: center;
+			@include maxw(extra_width) {
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
 		}
 		.swiper-container{
 			.swiper-slide{
@@ -497,6 +631,9 @@ section.clientes{
 		}
 		.swiper-container.swiper-container-initialized.swiper-container-horizontal {
 		    padding-bottom: 73px;
+		    @include maxw(extra_width) {				
+				padding-bottom: 20px;
+			}
 		}
 	}
 }

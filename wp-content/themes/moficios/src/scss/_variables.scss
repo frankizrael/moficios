@@ -6,3 +6,63 @@ $color-kabala: #C1D72D;
 $color-gana-diario: #0092D7;
 $color-ganagol: #4BB040;
 $color-gris: #717171;
+
+
+$view-mypc: 1700px;
+$view-mylaptop: 1400px;
+$view-laptop: 1300px;
+$view-tablet_p: 1145px;
+$view-table_max: 1030px;
+$view-table_min: 970px;
+$view-mobile: 550px;
+$view-extra_width: 750px;
+$view-extra_height: 450px;
+$view-iphone: 321px;
+$view-extra_height: 470px;
+@mixin maxw($breakpoint) {  
+  @if $breakpoint == mypc {
+    @media (max-width: "#{$view-mypc}") {
+      @content;
+    }
+  }
+  @if $breakpoint == mylaptop {
+    @media (max-width: "#{$view-mylaptop}") {
+      @content;
+    }
+  }
+  @if $breakpoint == laptop {
+    @media (max-width: "#{$view-laptop}") {
+      @content;
+    }
+  }
+  @if $breakpoint == tablet_p {
+    @media (max-width: "#{$view-tablet_p}") {
+      @content;
+    }
+  }
+  @if $breakpoint == table_max {
+    @media (max-width: "#{$view-table_max}") {
+      @content;
+    }
+  }
+  @if $breakpoint == table_min {
+    @media (max-width: "#{$view-table_min}") {
+      @content;
+    }
+  }
+  @if $breakpoint == extra_width {
+    @media (max-width: "#{$view-extra_width}") {
+      @content;
+    }
+  }
+  @if $breakpoint == mobile {
+    @media (max-width: "#{$view-mobile}") {
+      @content;
+    }
+  }
+  @if $breakpoint == iphone {
+		@media (max-width: "#{$view-iphone}") {
+			@content;
+		}
+	}
+}

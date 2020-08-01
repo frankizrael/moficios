@@ -10,6 +10,17 @@ var swiper = new Swiper('.solicitados .swiper-container', {
   navigation: {
     nextEl: '.solicitados .swiper-button-next',
     prevEl: '.solicitados .swiper-button-prev',
+  },
+  breakpoints: {
+    1400: {
+        slidesPerView: 6,
+    },
+    800: {
+        slidesPerView: 3,
+    },
+    0: {
+        slidesPerView: 2,
+    }
   }
 });
 var swiper = new Swiper('.clientes .swiper-container', {
@@ -19,6 +30,17 @@ var swiper = new Swiper('.clientes .swiper-container', {
   pagination: {
     el: '.clientes .swiper-pagination',
     clickable: true,
+  },
+  breakpoints: {
+    1400: {
+        slidesPerView: 3,
+    },
+    800: {
+        slidesPerView: 2,
+    },
+    0: {
+        slidesPerView: 1,
+    }
   }
 });
 
