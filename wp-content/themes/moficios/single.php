@@ -142,11 +142,12 @@ $singleid = get_the_ID();
 					# Get the user's first and last name
 					$name = $new_user->first_name;
 					$last_name = $new_user->last_name;
+					$img_user = get_avatar_url( $user_id );
 			?>	
 			<h2><img src="<?php echo get_template_directory_uri(); ?>/img/icon/icon-caja.svg" alt="">Opiniones</h2>			
 			<div class="item-cliente" id="<?php echo $co->ID; ?>">
 				<div class="comentarista">
-					<img src="<?php echo get_field( 'imagen', 'user_'.$user_id );?>" alt="">
+					<img src="<?php echo $img_user;?>" alt="">
 					<div class="datos-perfil-cv">
 						<h2><strong><?php echo $name;?></strong><?php echo $lastname;?></h2>
 						<div class="calificacion-stars">
