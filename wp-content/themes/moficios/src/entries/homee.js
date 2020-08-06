@@ -111,6 +111,7 @@ function initMap(latlng, array_locations, zoomR) {
 	});	
 }
 var latlng;
+var auxRepeat = 0;
 navigator.geolocation.watchPosition(function(position) {
    //default init
 	latlng = {lat: -11.9052079, lng: -77.054236}; 
@@ -119,7 +120,10 @@ navigator.geolocation.watchPosition(function(position) {
 		lat:	position.coords.latitude
 		,lng:	position.coords.longitude
 	};
-	process_cords(latlng);
+    if (auxRepeat == 0) {
+	   process_cords(latlng);
+       auxRepeat++;
+    }
 },
 function(error) {
     if (error.code == error.PERMISSION_DENIED) {
