@@ -41,7 +41,8 @@
                         }
                     ?>
                 </div>
-                <a href="javascript:void(0)" class="oficio">Ofrece tu oficio</a>
+                <a href="<?php echo site_url(); ?>/profesional" class="oficio">Ofrece tu oficio</a>
+                <!--<a href="javascript:void(0)" class="oficio">Ofrece tu oficio</a>-->
             </div>
         </div>
     </header>

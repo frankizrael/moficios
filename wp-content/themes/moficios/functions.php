@@ -666,6 +666,87 @@ add_action('wp_ajax_nopriv_loginprofesional', 'get_loginprofesional');
 add_action('wp_ajax_loginprofesional', 'get_loginprofesional');
 
 
+/*register*/
+
+function get_registerprofesional() {
+		
+	$register_user = filter_input(INPUT_GET, 'register_user');
+	$register_name = filter_input(INPUT_GET, 'register_name');
+	$register_lastname = filter_input(INPUT_GET, 'register_lastname');
+	$register_email = filter_input(INPUT_GET, 'register_email');
+	$register_telefono = filter_input(INPUT_GET, 'register_telefono');
+	$password = filter_input(INPUT_GET, 'password');
+	$insideuser = filter_input(INPUT_GET, 'insideuser');
+
+
+	$args_s = array(
+	  'numberposts' => -1,
+	  'post_type'   => 'profesional'
+	);
+	$profesionals = get_posts( $args_s );
+	$user_asig = 1;
+	$email_asig = 1;
+	foreach ($profesionals as $pro) {
+		if (get_the_title($pro->ID) == $register_user) {
+			$user_asig = 0;	
+			if (get_field('register_email', $pro->ID) == $register_email) {
+				$email_asig = 0;	
+			}
+		} 
+	}
+
+	if ($user_asig == 1) {
+		if ($email_asig == 1) {
+			$title = $register_user;
+			$args = array(
+		        'post_title' => $title,
+		        'post_type' => 'profesional',
+		        'post_status' => 'publish'
+		    );
+		    $profesional_id = wp_insert_post($args);
+
+		    update_field( 'nombre', $register_name, $profesional_id );
+			update_field( 'apellido', $register_lastname, $profesional_id );
+			update_field( 'password', $password, $profesional_id );
+			update_field( 'correo', $register_email, $profesional_id );
+			update_field( 'telefono', $register_telefono, $profesional_id );
+
+			$term_obj_list = get_the_terms( $profesional_id, 'category' );
+			$terms_name = array();	
+			foreach ($term_obj_list as $tt) {
+				array_push($terms_name,$tt->name);
+			}
+
+			$msj = array(
+				'acess' 				=> 1,
+				'key' 					=> 'ACCESS','msj'=>'Acceso autorizado',
+				'id'					=> $profesional_id,
+				'nombre' 				=> get_field('nombre',$profesional_id),
+				'apellido' 				=> get_field('apellido',$profesional_id),
+				'dni' 					=> get_the_title($profesional_id),
+				'imagen' 				=> get_the_post_thumbnail_url($profesional_id),
+				'direccion' 			=> get_field('direccion',$profesional_id),
+				'correo' 				=> get_field('correo',$profesional_id),
+				'telefono' 				=> get_field('telefono',$profesional_id),
+				'fecha_nacimiento' 		=> get_field('fecha_nacimiento',$profesional_id),
+				'cualidades' 			=> get_field('cualidades',$profesional_id),
+				'antecedentes_penales' 	=> get_field('antecedentes_penales',$profesional_id),
+				'carnet_sanidad' 		=> get_field('carnet_sanidad',$profesional_id),
+				'categories'			=> $terms_name,
+				'trabajos'				=> get_field('trabajos',$profesional_id)
+			);
+		} else {
+			$msj = array('acess' => 0,'key'=>'ERROR_PASS','msj'=>'Correo ya registrado');			
+		}
+	} else {
+		$msj = array('acess' => 0,'key'=>'ERROR_USER','msj'=>'Usuario ya registrado');		
+	}
+	echo json_encode($msj);
+	wp_die();
+}
+add_action('wp_ajax_nopriv_registerprofesional', 'get_registerprofesional');
+add_action('wp_ajax_registerprofesional', 'get_registerprofesional');
+
 /*add valorait*/
 function get_changedatafirst() {
 	$user_id = filter_input(INPUT_GET, 'user_id');

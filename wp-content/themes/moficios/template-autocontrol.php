@@ -5,7 +5,17 @@ get_header();
 <section class="autocontrol">
 	<div class="autocontrol__login" id="login">
 		<h1>¡Hola profesional! ingresa a tu panel</h1>
-		<div class="login-authO">
+		<div class="tab-single">
+			<ul>
+				<li class="active" data="#login_r">
+					Iniciar sesión
+				</li>
+				<li data="#register">
+					Registrar
+				</li>
+			</ul>
+		</div>
+		<div class="login-authO auth_a" id="login_r">
 			<div class="inputFerm">
 				<div class="coreferm">
 					<label>DNI</label>
@@ -27,6 +37,95 @@ get_header();
 			<p class="error errorJsMsj"></p>
 			<div class="button_send">
 				<a href="javascript:void(0)" class="btn" id="jsSend">Ingresar</a>
+			</div>
+			<div class="extra">
+				Si aún no posee una cuenta puede crearla <a href="javascript:void(0)" class="linkHere">aquí</a>
+			</div>
+		</div>
+		<div class="register-authO auth_a" id="register">
+			<?php
+	            if ( is_user_logged_in() ) {
+	            	$current_user = wp_get_current_user();  
+	        ?>  
+			<div class="inputFerm">
+				<div class="coreferm">
+					<label>DNI</label>
+				</div>
+				<div class="insideferm">
+					<i><img src="<?php echo get_template_directory_uri(); ?>/img/icon/icon-perfil.svg" alt=""></i>				
+					<input type="number" name="register_user" id="register_user" onKeyPress="if(this.value.length==8) return false;" pattern="[0-9]*" placeholder="Ingresa tu documento de identidad">
+				</div>		
+			</div>
+			<div class="inputFerm inputMid">
+				<div class="coreferm">
+					<label>Nombre</label>
+				</div>
+				<div class="insideferm">				
+					<input type="text" name="register_name" id="register_name" onkeydown="return alphaOnly(event);" placeholder="Ingresa tu nombre">
+				</div>		
+			</div>
+			<div class="inputFerm inputMid">
+				<div class="coreferm">
+					<label>Apellido</label>
+				</div>
+				<div class="insideferm">			
+					<input type="text" name="register_lastname" id="register_lastname" onkeydown="return alphaOnly(event);" placeholder="Ingresa tu apellido">
+				</div>		
+			</div>			
+			<div class="inputFerm inputMid">
+				<div class="coreferm">
+					<label>Correo</label>
+				</div>
+				<div class="insideferm">				
+					<input type="email" name="register_email" id="register_email" placeholder="Ingresa tu correo">
+				</div>		
+			</div>
+			<div class="inputFerm inputMid">
+				<div class="coreferm">
+					<label>Teléfono</label>
+				</div>
+				<div class="insideferm">				
+					<input type="number" name="register_telefono" id="register_telefono" placeholder="Ingresa tu teléfono" onKeyPress="if(this.value.length==9)">
+				</div>		
+			</div>
+			<div class="inputFerm">
+				<div class="coreferm">
+					<label>CONTRASEÑA</label>
+				</div>
+				<div class="insideferm">
+					<i><img src="<?php echo get_template_directory_uri(); ?>/img/icon/icon-seguridad.svg" alt=""></i>
+					<input type="password" name="password" id="password" placeholder="Ingresa una contraseña">					
+				</div>
+			</div>					
+			<p class="error errorJsMsj2"></p>
+			<div class="button_send">
+				<a href="javascript:void(0)" class="btn disabledbtn" id="jsRegister" id-user="<?php echo $current_user->ID; ?>">Registrar</a>
+			</div>
+			<?php
+				} else {
+					echo '<div class="devFb">Regístrate</div>';
+					do_action('facebook_login_button');
+				}
+			?>
+		</div>
+		<div class="planes-paymenth">
+			<h2>¡Suscribete ahora!</h2>
+			<p>El primer mes es gratis, puedes registrarte ahora mismo</p>
+			<div class="planes-core">
+				<?php
+					$planes = get_field('planes','options');
+					foreach ($planes as $plan) {
+						?>
+				<div class="plan-core">
+					<h4><?php echo $plan['nombre'];  ?></h4>
+					<div class="cost"><?php echo $plan['costo'];  ?></div>
+					<div class="desc">
+						<?php echo $plan['desc'];  ?>
+					</div>
+				</div>
+						<?php
+					}
+				?>
 			</div>
 		</div>
 	</div>
@@ -215,6 +314,10 @@ get_header();
 <script type='text/javascript'>
 /* <![CDATA[ */
 	var aw = {"ajaxurl":"<?php echo site_url(); ?>/wp-admin/admin-ajax.php"};
+	function alphaOnly(event) {
+	    var key = event.keyCode;
+	    return ((key >= 65 && key <= 90) || key == 8 || key == 9 || key == 32 || key == 127);
+	};
 /* ]]> */
 </script>
 <?php get_footer();

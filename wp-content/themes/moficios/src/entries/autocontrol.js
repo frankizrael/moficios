@@ -11,6 +11,19 @@ $('.autocontrol__tab ul li').on('click',function(){
 });
 $('.autocontrol__tab ul li').eq(0).trigger('click');
 
+$('.tab-single li').on('click',function(){
+    let $this = $(this);
+    let data = $this.attr('data');
+    $('.auth_a').hide();
+    $(data).css('display','flex');
+    $('.tab-single li').removeClass('active');
+    $this.addClass('active');
+});
+
+$('.linkHere').on('click',function(){
+    $('.tab-single li').eq(1).trigger('click');
+});
+
 $('#jsSend').on('click',function(){
 	let user = $('#user').val();
 	let pass = $('#password').val();	
@@ -124,6 +137,95 @@ $('#imagenInput').on('change',function(){
         }
     });
 });
+
+$('.register-authO input').on('blur',function(){
+    let $input = $('.register-authO input');
+    let aux = 0;
+    for (let i=0;i<$input.length;i++){
+        if ($input.eq(i).val().length == 0) {
+            aux++;
+        }
+    }    
+    if (aux == 0) {
+        $('#jsRegister').removeClass('disabledbtn');
+    }
+});
+$('#jsRegister').on('click',function(){  
+    let register_user = $('#register_user').val();
+    let register_name = $('#register_name').val();
+    let register_lastname = $('#register_lastname').val();
+    let register_email = $('#register_email').val();
+    let register_telefono = $('#register_telefono').val();
+    let password = $('#password').val();
+    let user = $('#jsRegister').attr('id-user');
+    $.ajax({
+        url: '/wp-admin/admin-ajax.php',
+        method: 'get',
+        data: {
+            action: 'registerprofesional',
+            insideuser: user,
+            register_user: register_user,
+            register_name: register_name,
+            register_lastname: register_lastname,
+            register_email: register_email,
+            register_telefono: register_telefono,
+            password: password
+        },
+        success: function (resp) {
+            var json = JSON.parse(resp);
+            if (json.acess == '0') {
+                if (json.key == 'ERROR_USER') {
+                    $('#user').val('');
+                    $('#password').val(''); 
+                }
+                if (json.key == 'ERROR_PASS') {
+                    $('#password').val('');                     
+                }
+                $('.errorJsMsj').html(json.msj);
+            }
+            if (json.acess == '1') {    
+                console.log(json);          
+                let acesspp = json.msj;
+                let welcomemsj = 'Bienvenido '+json.nombre;
+                Swal.fire(acesspp,welcomemsj, 'success');
+                $('#login').hide();
+                $('#data').show();
+                //includedata
+                $('.docJS').html(json.dni);
+                $('.docJS').attr('user_id',json.id);
+                $('#nombreJs').val(json.nombre);
+                $('#apellidoJs').val(json.apellido);
+                $('#directionJs').val(json.direccion);
+                $('#correoJs').val(json.correo);
+                $('#telefonoJs').val(json.telefono);
+                $('#datenacJs').val(json.fecha_nacimiento);
+                $('#imagenJs').attr('src',json.imagen);
+                $('#cualidadesJs').val(json.cualidades);
+                $('#registroJs').attr('href',json.antecedentes_penales);
+                $('#carnetJs').attr('href',json.carnet_sanidad);
+                //include categories
+                for (let i=0;i<json.categories.length;i++){
+                    $('#jsEspecialidades').append('<li>'+json.categories[i]+'</li>');
+                    for (let v=0; v<$('#oficio option').length; v++) {
+                        let html = $('#oficio option').eq(v).text();
+                        if (html == json.categories[i]) {
+                            //console.log(html);
+                            $('#oficio option').eq(v).attr('disabled',true);
+                        }
+                    }
+                }
+                //includeworks
+                for (let i=0;i<json.trabajos.length;i++){
+                    $('#jsTrabajos').append('<li><img src="'+json.trabajos[i].imagen+'"></li>');                    
+                }               
+            }
+        }
+    });
+});
+
+
+
+
 
 $('.editEspecialidades').on('click',function(){
 	$('#oficio').show();

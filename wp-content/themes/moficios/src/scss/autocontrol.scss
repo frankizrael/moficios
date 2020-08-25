@@ -14,6 +14,30 @@
 	      width: 100%;
 	      padding: 20px 20px;
 	    }
+	    .tab-single {
+		    margin: auto;
+		    margin-top: 35px;
+		    margin-bottom: 0px;
+		    max-width: 400px;
+		    ul {
+			    list-style: none;
+			    margin: 0px;
+			    display: flex;
+			    border-top-left-radius: 6px;
+			    overflow: hidden;
+			    border-top-right-radius: 6px;
+			    li {
+				    flex: 1;
+				    text-align: center;
+				    padding: 10px 0px;
+				    font-weight: 700;
+				    cursor: pointer;
+				    &.active {
+					    background: #ececec;
+					}
+				}
+			}
+		}
 	    h1 {
 	    	text-align: center;
 	    }
@@ -31,10 +55,12 @@
 		    padding: 20px;
 		    margin: auto;
 		    width: 100%;
-		    margin-top: 35px;
 		    border-radius: 6px;
+		    flex-wrap: wrap;
+		    display: flex;
 		    .inputFerm {
 			    margin-bottom: 20px;
+			    width: 100%;
 			    label {
     				font-weight: 700;
 				    font-size: 14px;
@@ -61,6 +87,7 @@
 				}
 			}
 			.button_send {
+				width: 100%;
 				a {
 				    color: white;
 				    background: #2658c8;
@@ -69,6 +96,119 @@
 				    width: 100%;
 				    display: block;
 				    text-align: center;
+				}
+			}			
+			.extra {
+			    margin-top: 20px;
+			    color: #797979;
+			    a {
+				    color: #2658c8;
+				    font-weight: 700;
+				    text-decoration: underline;
+				}
+			}
+		}
+		.register-authO {
+			max-width: 400px;
+		    border: solid 1px #ececec;
+		    padding: 20px;
+		    margin: auto;
+		    width: 100%;
+		    border-radius: 6px;
+		    display: flex;
+		    flex-wrap: wrap;
+		    justify-content: space-between;
+		    display: none;
+			.inputFerm {
+			    margin-bottom: 20px;
+			    width: 100%;
+			    label {
+    				font-weight: 700;
+				    font-size: 14px;
+				    color: #2658c8;
+				}
+				&.inputMid {
+				    width: calc(50% - 10px);
+				}
+			}
+			.insideferm {
+			    display: flex;
+			    background: #F5F5F5;
+			    border-radius: 7px;
+			    padding: 10px 10px;
+			    i {
+				    margin-right: 10px;
+				    border-right: solid 1px #d6d6d6;
+				    padding-right: 10px;
+				}
+				input {
+				    width: 100%;
+				    box-sizing: border-box;
+				    border: none;
+				    background: transparent;
+				    color: #2658c8;
+				    outline: none;
+				}
+			}
+			.button_send {
+				width: 100%;
+				a {
+				    color: white;
+				    background: #2658c8;
+				    padding: 10px 10px;
+				    border-radius: 6px;
+				    width: 100%;
+				    display: block;
+				    text-align: center;
+				    &.disabledbtn {
+				    	opacity: 0.4;
+				    	pointer-events: none;
+				    }
+				}
+			}
+		}
+		.planes-paymenth {
+		    text-align: center;
+		    border-top: solid 1px gainsboro;
+		    margin-top: 40px;
+		    h2 {
+			    margin-top: 0px;
+			    font-size: 24px;
+			    margin-bottom: 0px;
+			    padding-top: 15px;
+			    padding-bottom: 5px;
+			}
+			.planes-core {
+			    display: flex;
+			    align-items: center;
+			    justify-content: space-between;
+			    margin: auto;
+			    margin-top: 20px;
+			    .plan-core {
+				    width: calc(33.33% - 10px);
+				    background: white;
+				    box-shadow: 0px 5px 12px #00000038;
+				    h4 {
+					    background: #ececec61;
+					    padding: 10px;
+					    margin-bottom: 0px;
+					}
+					.cost {
+					    font-size: 40px;
+					    font-weight: 700;
+					    color: #2658c8;
+					    padding: 5px 0px;
+					}
+					.desc {
+					    padding: 0px 15px;
+					    font-size: 12px;
+					    ul {
+					    	list-style: none;
+					    	li {
+					    		margin-bottom: 5px;
+					    	}
+					    }
+					}
 				}
 			}
 		}
